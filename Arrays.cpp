@@ -163,3 +163,99 @@ int main()
   }
   bubbleSort(arr, n);
 } */
+
+// Insertion Sort- Insert an element from an unsorted array to its correct position in the sorted array
+
+/* void insertionSort(int arr[], int n)
+{
+  for (int i = 1; i < n; i++)
+  {
+    int current = arr[i];
+    int j = i - 1;
+    while (arr[j] > current && j >= 0)
+    {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = current;
+  }
+  cout << "Sorted array: ";
+  for (int i = 0; i < n; i++)
+  {
+    cout << arr[i] << " ";
+  }
+}
+int main()
+{
+  int n;
+  cin >> n;
+  int arr[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+  insertionSort(arr, n);
+} */
+
+/* //Maximum number at i-th iteration Time complexity=O(n)
+int main(){
+  int n;
+  cin>>n;
+  int arr[n];
+  for(int i=0;i<n;i++){
+    cin>>arr[i];
+  }
+  int maximum=INT_MIN;
+  for(int i=0; i<n;i++){
+    maximum=max(maximum, arr[i]);
+    cout<<"Maximum number after "<<i <<" iteration is: "<<maximum;
+  }
+} */
+
+/* // Sum of all subarrays
+int main()
+{
+  int n;
+  cin >> n;
+  int arr[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+  int sum = 0;
+  for (int i = 0; i < n; i++)
+  {
+    sum=0;
+    for (int j = i; j < n; j++)
+    {
+      sum = sum + arr[j];
+      cout<<sum<<endl;
+    }
+  }
+} */
+
+/* // Finding which subarray is the longest subarray having same difference when in a consecutive manner
+int main()
+{
+  int n;
+  cin >> n;
+  int arr[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+  int  diff= arr[1]-arr[0],length = 1, maximum = 0;
+  for (int i = 2; i < n; i++)
+  {
+    if ((arr[i] - arr[i-1] == diff))
+    {
+      length += 1;
+    }
+    else
+    {
+      length = 2;
+    }
+    maximum = max(maximum, length);
+  }
+  cout << "Maximum length of the subarray having difference in a consecutive manner is: " << maximum;
+} */
