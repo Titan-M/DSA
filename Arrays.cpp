@@ -244,18 +244,20 @@ int main()
   {
     cin >> arr[i];
   }
-  int  diff= arr[1]-arr[0],length = 1, maximum = 0;
-  for (int i = 2; i < n; i++)
+  int diff = arr[1] - arr[0], length = 2, maximum = 0;
+  for (int i = 1; i < n; i++)
   {
-    if ((arr[i] - arr[i-1] == diff))
+    if (arr[i] - arr[i - 1] == diff)
     {
-      length += 1;
+      length++;
     }
     else
     {
-      length = 2;
+      length = 1;
+      diff = arr[i] - arr[i - 1];
     }
     maximum = max(maximum, length);
   }
-  cout << "Maximum length of the subarray having difference in a consecutive manner is: " << maximum;
+  cout << "Maximum length of the subarray having difference in a consecutive manner is: " << maximum << endl;
+  return 0;
 } */
