@@ -261,3 +261,150 @@ int main()
   cout << "Maximum length of the subarray having difference in a consecutive manner is: " << maximum << endl;
   return 0;
 } */
+
+/* // Record Breaker
+int main()
+{
+  int n;
+  cin >> n;
+  int arr[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+  if(n==1){
+    cout<<"Record Breaking Days: "<<arr[0];
+  }
+
+  int maximum = -1;
+  for (int i = 0; i < n; i++)
+  {
+    if ((i == n - 1 || arr[i] > arr[i + 1]) && arr[i] > maximum)
+    {
+      cout << "Record Breaking Day: " << arr[i] << endl;
+    }
+    maximum = max(maximum, arr[i]);
+  }
+} */
+
+/* //Repeating Elements with early occurence
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    const int N = 1e6 + 1;
+    int idx[N];
+    for (int i = 0; i < N; i++) {
+        idx[i] = -1;
+    }
+
+    int minIdx = INT_MAX;
+    for (int i = 0; i < n; i++) {
+        if (idx[arr[i]] != -1) {
+            minIdx = min(minIdx, idx[arr[i]]);
+        } else {
+            idx[arr[i]] = i;
+        }
+    }
+
+    if (minIdx == INT_MAX) {
+        cout << "-1" << endl;
+    } else {
+        cout << minIdx + 1 << endl;
+    }
+
+    return 0;
+} */
+
+/* // Subarray with given sum
+int main()
+{
+  int n;
+  cin >> n;
+  int arr[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+  int S;
+  cout << "Enter S";
+  cin >> S;
+  int i = 0, j = 0, st = -1, en = -1, sum = 0;
+  while (j < n && sum + arr[j] <= S)
+  {
+    sum += arr[j];
+    j++;
+  }
+
+  if (sum == S)
+  {
+    cout << i + 1 << " " << j << endl;
+    return 0;
+  }
+
+  while (j < n)
+  {
+    sum += arr[j];
+    while (sum > S)
+    {
+      sum -= arr[i];
+      i++;
+    }
+
+    if (sum == S)
+    {
+      st=i+1;
+      en=j+1;
+      break;
+    }
+    j++;
+  }
+  cout<<st <<" "<< en<< endl;
+}
+
+//Optimised Code
+  int main() {
+    int n;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+    int arr[n];
+    
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    int S;
+    cout << "Enter the target sum (S): ";
+    cin >> S;
+    
+    int st = -1, en = -1, sum = 0, i = 0, j = 0;
+
+    while (j < n) {
+        sum += arr[j];
+        
+        while (sum > S && i < j) {
+            sum -= arr[i];
+            i++;
+        }
+        
+        if (sum == S) {
+            st = i + 1;
+            en = j + 1;
+            break;
+        }
+        
+        j++;
+    }
+    
+    if (st == -1 || en == -1) {
+        cout << "No subarray found with sum equal to " << S << endl;
+    } else {
+        cout << "Subarray found with sum equal to " << S << " starts at index " << st << " and ends at index " << en << endl;
+    }
+    return 0;
+} */
