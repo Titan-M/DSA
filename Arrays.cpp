@@ -372,39 +372,292 @@ int main()
     cout << "Enter the size of the array: ";
     cin >> n;
     int arr[n];
-    
+
     cout << "Enter the elements of the array: ";
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
-    
+
     int S;
     cout << "Enter the target sum (S): ";
     cin >> S;
-    
+
     int st = -1, en = -1, sum = 0, i = 0, j = 0;
 
     while (j < n) {
         sum += arr[j];
-        
+
         while (sum > S && i < j) {
             sum -= arr[i];
             i++;
         }
-        
+
         if (sum == S) {
             st = i + 1;
             en = j + 1;
             break;
         }
-        
+
         j++;
     }
-    
+
     if (st == -1 || en == -1) {
         cout << "No subarray found with sum equal to " << S << endl;
     } else {
         cout << "Subarray found with sum equal to " << S << " starts at index " << st << " and ends at index " << en << endl;
     }
     return 0;
+} */
+
+// To check which is the smallest possible positive integer missing in an array
+/* int main()
+{
+  int n;
+  cin >> n;
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
+  }
+  const int N = 1e6 + 2;
+  bool check[N];
+  for (int i = 0; i < n; i++)
+  {
+    check[i] = false;
+  }
+
+  for (int i = 0; i < n; i++)
+  {
+    if (a[i] >= 0)
+    {
+      check[a[i]] = true;
+    }
+  }
+  int ans = -1;
+
+  for (int i = 1; i < N; i++)
+  {
+    if (check[i] == false)
+    {
+      ans = i;
+      break;
+    }
+  }
+  cout << ans;
+} */
+
+// Subarray
+/* int main()
+{
+  int n;
+  cin >> n;
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
+  }
+
+  for(int i=0;i<n;i++){
+    for(int j=i;j<n;j++){
+      for(int k=i;k<j;k++){
+        cout<<a[k];
+      }
+    }
+    cout<<endl;
+  }
+} */
+
+// Maximum subarray sum
+/* int main()
+{
+  int n;
+  cin >> n;
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
+  }
+  int maximum=INT_MIN;
+  int sum=0;
+
+  for(int i=0;i<n;i++){
+    for(int j=i;j<n;j++){
+      for(int k=i;k<=j;k++){
+        sum+=a[k];
+      }
+      maximum=max(maximum,sum);
+      sum=0;
+    }
+  }
+  cout<<"Maximum sum is: "<<maximum;
+} */
+
+/* //Time complexity O[n^2]
+int main()
+{
+  int n;
+  cin >> n;
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
+  }
+  int currSum[n + 1];
+  currSum[0] = 0;
+  for (int i = 1; i <= n; i++)
+  {
+    currSum[i] = currSum[i - 1] + a[i - 1]; //Sum is stored in new array and then currSum is added with the numbers in the new array
+  }
+
+  int maxSum = INT_MIN;
+  for (int i = 1; i <= n; i++)
+  {
+    int sum=0;
+    for(int j=0;j<=i-1;j++){
+      sum=currSum[i]-currSum[j];
+      maxSum=max(maxSum,sum);
+    }
+  }
+  cout<<maxSum;
+} */
+
+/* // Time complexity O(n) - Kadane's Algo
+int main()
+{
+  int n;
+  cin >> n;
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
+  }
+  int currSum = 0;
+  int maxSum = INT_MIN;
+  for (int i = 0; i < n; i++)
+  {
+    currSum += a[i];
+    if (currSum < 0)
+    {
+      currSum = 0;
+    }
+    maxSum=max(maxSum,currSum);
+  }
+  cout<<maxSum;
+} */
+
+/* // Maximum circular subarray Sum
+
+int kadane(int arr[], int n)
+{
+  int currSum = 0;
+  int maxSum = INT_MIN;
+  for (int i = 0; i < n; i++)
+  {
+    currSum += arr[i];
+    if (currSum < 0)
+    {
+      currSum = 0;
+    }
+    maxSum = max(maxSum, currSum);
+  }
+  return maxSum;
+}
+int main()
+{
+  int n;
+  cin >> n;
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
+  }
+
+  int wrapSum;
+  int nonWrapSum;
+  nonWrapSum = kadane(a, n);
+
+  int totalSum = 0;
+  for (int i = 0; i < n; i++)
+  {
+    totalSum += a[i];
+    a[i] = -a[i];
+  }
+
+  wrapSum=totalSum+kadane(a, n);
+  cout<<max(wrapSum, nonWrapSum);
+} */
+
+/* // Pair Sum problem
+bool pairSum(int arr[], int n, int k)
+{
+  int sum = 0;
+  for (int i = 0; i < n - 1; i++)
+  {
+    for (int j = i + 1; j < n; j++)
+    {
+      if (arr[i] + arr[j] == k)
+      {
+        cout << i << " " << j << endl;
+        return true;
+      }
+    }
+  }
+  return false;
+}
+int main()
+{
+  int k, n;
+  cin >> n;
+  cin >> k;
+  int a[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
+  }
+  cout << pairSum(a, n, k);
+} */
+
+/* // Time complexity O(n)
+int main()
+{
+  int k, n;
+  cin >> n;
+  cin >> k;
+  int arr[n];
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+  for (int i = 1; i < n; i++)
+  {
+    int current = arr[i];
+    int j = i - 1;
+    while (arr[j] > current && j >= 0)
+    {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = current;
+  }
+
+  int high = n - 1;
+  int low = 0;
+
+  while (low<high)
+  {
+    int sum = arr[low] + arr[high];
+    if (sum == k)
+    {
+      cout << low << " " << high << endl;
+      break;
+    }
+    if (sum > k)
+    {
+      high--;
+    }
+    else
+    {
+      low++;
+    }
+  }
 } */
